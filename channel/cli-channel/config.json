@@ -1,0 +1,9 @@
+{
+  "goclaw_url": "ws://localhost:18790/ws",
+  "gateway_token": "b8061429d1c651435954be9044e15e91",
+  "user_id": "channel-bridge",
+  "agent_key": "fox-spirit",
+  "listen_addr": ":19900",
+  "session_mode": "direct",
+  "stream_mode": "sse"
+}

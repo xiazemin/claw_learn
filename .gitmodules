@@ -1,0 +1,9 @@
+[submodule "goclaw-small"]
+	path = goclaw-small
+	url = https://github.com/smallnest/goclaw
+[submodule "skillhub"]
+	path = skillhub
+	url = https://github.com/iflytek/skillhub.git
+[submodule "goclaw"]
+	path = goclaw
+	url = https://github.com/nextlevelbuilder/goclaw
