@@ -1,0 +1,16 @@
+node_modules/
+*.tsbuildinfo
+.DS_Store
+*.log
+
+# local env
+.env
+.env.local
+.env*.local
+
+# pack outputs
+dist-frontend.zip
+dist-server.zip
+*.tgz
+.next/
+next-env.d.ts

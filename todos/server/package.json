@@ -1,0 +1,27 @@
+{
+  "name": "personal-todo-app-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "postinstall": "nitropack prepare",
+    "dev": "nitropack dev --port 4917 --host 0.0.0.0 --qr=false",
+    "build": "cross-env NITRO_PRESET=node nitropack build && node scripts/copy-capability-assets.mjs",
+    "pack:server": "cross-env NITRO_PRESET=node nitropack build && node scripts/copy-capability-assets.mjs && node ../scripts/zip-dir.mjs .output ../.publish/dist-server.zip .output",
+    "lint": "oxlint -c ../.oxlintrc.json routes/ utils/",
+    "check:types": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "nitropack": "^2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "oxlint": "^1.56.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

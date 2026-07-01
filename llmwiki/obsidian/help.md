@@ -1,0 +1,1 @@
+https://obsidian.md/help/plugin-security

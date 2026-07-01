@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="title">Pomodoro Timer</div>
+
+  <div class="mode-tabs" id="modeTabs">
+    <button class="mode-tab active" data-mode="work">Work</button>
+    <button class="mode-tab" data-mode="shortBreak">Short Break</button>
+    <button class="mode-tab" data-mode="longBreak">Long Break</button>
+  </div>
+
+  <div class="timer-container">
+    <svg class="timer-ring-svg" viewBox="0 0 200 200">
+      <circle class="timer-ring-track" cx="100" cy="100" r="90" />
+      <circle class="timer-ring-progress" id="ringProgress" cx="100" cy="100" r="90" />
+    </svg>
+    <div class="timer-display">
+      <div class="timer-time" id="timerTime">25:00</div>
+      <div class="timer-mode-label" id="modeLabel">Work</div>
+    </div>
+  </div>
+
+  <div class="pomodoro-counter">
+    <span class="tomato">🍅</span>
+    <span class="count" id="pomodoroCount">0</span>
+    <span>/ 4</span>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-primary" id="startPauseBtn">
+      <span class="btn-icon" id="playPauseIcon">▶</span>
+      <span id="startPauseText">Start</span>
+    </button>
+    <button class="btn btn-secondary" id="resetBtn">
+      <span class="btn-icon">↺</span>
+      <span>Reset</span>
+    </button>
+  </div>
+
+  <div class="settings-section">
+    <button class="settings-toggle" id="settingsToggle">
+      ⚙ Settings <span class="arrow">▼</span>
+    </button>
+    <div class="settings-panel" id="settingsPanel">
+      <div class="settings-content">
+        <div class="setting-row">
+          <label for="workDuration">Work (min)</label>
+          <input type="number" id="workDuration" min="1" max="120" value="25">
+        </div>
+        <div class="setting-row">
+          <label for="shortBreakDuration">Short Break (min)</label>
+          <input type="number" id="shortBreakDuration" min="1" max="60" value="5">
+        </div>
+        <div class="setting-row">
+          <label for="longBreakDuration">Long Break (min)</label>
+          <input type="number" id="longBreakDuration" min="1" max="60" value="15">
+        </div>
+        <div class="setting-row">
+          <label for="soundToggle">Sound</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="soundToggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Pomodoro Technique — 25 min focus, 5 min rest</div>
+</div>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

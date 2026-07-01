@@ -1,0 +1,10 @@
+{
+  "file-explorer": true,
+  "global-search": true,
+  "graph": true,
+  "backlink": true,
+  "tag-pane": true,
+  "page-preview": true,
+  "outgoing-link": true,
+  "starred": true
+}

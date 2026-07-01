@@ -1,0 +1,6 @@
+packages:
+  - client
+  - server
+
+catalog:
+  "@ks-open/capability": "latest"

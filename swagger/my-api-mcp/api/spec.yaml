@@ -1,0 +1,245 @@
+openapi: 3.0.3
+info:
+  title: Book Management API
+  version: 1.0.0
+  description: |
+    图书管理系统 API，同时支持 REST 客户端和 MCP Server
+    
+servers:
+  - url: http://localhost:8080/api/v1
+    description: 本地开发服务器
+
+paths:
+  /books:
+    get:
+      operationId: listBooks
+      summary: 获取所有图书
+      tags: [Books]
+      parameters:
+        - name: author
+          in: query
+          schema:
+            type: string
+          description: 按作者筛选
+        - name: genre
+          in: query
+          schema:
+            type: string
+          description: 按类型筛选
+      responses:
+        '200':
+          description: 图书列表
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    
+    post:
+      operationId: createBook
+      summary: 添加新书
+      tags: [Books]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          description: 无效请求
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /books/{bookId}:
+    get:
+      operationId: getBook
+      summary: 获取单本图书
+      tags: [Books]
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 图书详情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '404':
+          description: 未找到
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      operationId: updateBook
+      summary: 更新图书信息
+      tags: [Books]
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateBookRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+
+    delete:
+      operationId: deleteBook
+      summary: 删除图书
+      tags: [Books]
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: 删除成功
+
+  /search:
+    get:
+      operationId: searchBooks
+      summary: 搜索图书
+      tags: [Search]
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 搜索关键词
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: 搜索结果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
+
+components:
+  schemas:
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - author
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: 图书 ID
+        title:
+          type: string
+          description: 书名
+        author:
+          type: string
+          description: 作者
+        genre:
+          type: string
+          description: 类型
+        isbn:
+          type: string
+          description: ISBN
+        publishedAt:
+          type: string
+          format: date
+          description: 出版日期
+        price:
+          type: number
+          format: double
+          description: 价格
+
+    CreateBookRequest:
+      type: object
+      required:
+        - title
+        - author
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        author:
+          type: string
+        genre:
+          type: string
+        isbn:
+          type: string
+        publishedAt:
+          type: string
+          format: date
+        price:
+          type: number
+
+    UpdateBookRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        genre:
+          type: string
+        isbn:
+          type: string
+        publishedAt:
+          type: string
+          format: date
+        price:
+          type: number
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string

@@ -1,0 +1,39 @@
+{
+  "name": "personal-todo-app",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "run-p dev:client dev:server",
+    "dev:client": "pnpm --filter personal-todo-app-client dev",
+    "dev:server": "pnpm --filter personal-todo-app-server dev",
+    "pack": "run-p pack:frontend pack:server",
+    "pack:frontend": "pnpm --filter personal-todo-app-client pack:frontend",
+    "pack:server": "pnpm --filter personal-todo-app-server pack:server",
+    "lint": "run-p lint:client lint:server",
+    "lint:client": "pnpm --filter personal-todo-app-client lint",
+    "lint:server": "pnpm --filter personal-todo-app-server lint",
+    "build": "run-p build:client build:server",
+    "build:client": "pnpm --filter personal-todo-app-client build",
+    "build:server": "pnpm --filter personal-todo-app-server build",
+    "check:types": "run-p check:types:client check:types:server",
+    "check:types:client": "pnpm --filter personal-todo-app-client check:types",
+    "check:types:server": "pnpm --filter personal-todo-app-server check:types"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.4.2",
+    "npm-run-all": "^4.1.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@parcel/watcher",
+      "lightningcss",
+      "msw"
+    ]
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

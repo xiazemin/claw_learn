@@ -1,0 +1,9 @@
+node_modules/
+.nitro/
+.output/
+dist-server.zip
+*.log
+.DS_Store
+.env
+.env.local
+capabilities/wps_dbt.json

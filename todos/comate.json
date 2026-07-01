@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "meta": {
+    "projectId": "7437945981144211",
+    "framework": "react"
+  },
+  "command": {
+    "install": "pnpm install",
+    "dev": "pnpm run dev",
+    "build": "pnpm run build",
+    "zip": "node scripts/zip-dir.mjs client/dist .publish/dist-frontend.zip && node scripts/zip-dir.mjs server/.output .publish/dist-server.zip server/.output"
+  },
+  "scopes": [],
+  "cover": true
+}

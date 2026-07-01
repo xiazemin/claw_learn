@@ -1,0 +1,9 @@
+# 全局配置
+package: gen
+output: gen/api.gen.go
+generate:
+  models: true
+  client: true
+  chi-server: true          # 生成 Chi 服务端接口
+  embedded-spec: true       # 嵌入 OpenAPI 规范
+  strict-server: true       # 严格匹配接口

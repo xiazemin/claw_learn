@@ -7,3 +7,6 @@
 [submodule "goclaw"]
 	path = goclaw
 	url = https://github.com/nextlevelbuilder/goclaw
+[submodule "cli"]
+	path = cli
+	url = https://github.com/larksuite/cli
